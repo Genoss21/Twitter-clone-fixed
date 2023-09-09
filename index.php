@@ -337,7 +337,7 @@ if (empty($_SESSION['user_id'])) {
 
               <!-- Creat new post modal -->
               <div id="defaultModal" tabindex="-1" aria-hidden="true"
-                class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:-inset-[18px] h-[calc(100%-1rem)] max-h-full">
+                class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:-inset-0 h-[calc(100%-0rem)] max-h-full backdrop-blur-sm bg-white/10">
                 <div class="relative w-full max-w-2xl max-h-full">
                   <!-- Modal content -->
                   <div class="relative rounded-lg shadow bg-gray-100 dark:bg-[#28282B]">
@@ -540,16 +540,29 @@ if (empty($_SESSION['user_id'])) {
                           <span class="sr-only">Close modal</span>
                         </button>
                       </div>
+                      <!--Image post-->
                       <div class="flex justify-center">
-                        <div class="w-1/2">
-                          <?php
-                          if ($fetch['image_post']) {
-                            ?>
+                        <div class="w-auto">
+                          <?php if ($fetch['image_post']) { ?>
                             <div id="uploaded_image" data-modal-target="ViewpostModal" data-modal-toggle="ViewpostModal"
                               class="md:flex-shrink pr-6 cursor-pointer">
-                              <div>
-                                <img class="bg-cover bg-no-repeat bg-center rounded-lg opacity-100 w-full h-full"
-                                  src="<?php echo $fetch['image_post'] ?>" alt="" />
+                              <div class="bg-gray-100 dark:bg-[#28282B] rounded-lg">
+                                <div class="relative">
+                                  <?php
+                                  // Check the image's dimensions to determine orientation
+                                  list($width, $height) = getimagesize($fetch['image_post']);
+                                  if ($width > $height) {
+                                    // Landscape orientation
+                                    ?>
+                                    <img class="w-[1200px] h-auto md:w-auto rounded-lg"
+                                      src="<?php echo $fetch['image_post'] ?>" alt="" />
+                                  <?php } else {
+                                    // Portrait orientation or square image (no size adjustment)
+                                    ?>
+                                    <img class="w-auto h-auto md:w-full md:h-full max-h-[100vh] object-cover rounded-lg"
+                                      src="<?php echo $fetch['image_post'] ?>" alt="" />
+                                  <?php } ?>
+                                </div>
                               </div>
                               <div class="flex items-center justify-center my-3">
                                 <?php if ($isCurrentUserPost) { ?>
@@ -600,9 +613,9 @@ if (empty($_SESSION['user_id'])) {
                           <?php } ?>
                         </div>
 
-
-                        <div
-                          class="w-1/3 bg-gray-100 dark:bg-[#28282B] rounded-lg overflow-y-auto max-h-[calc(100vh-90px)]">
+                        <!--Comment section-->
+                        <div id="commentSection"
+                          class="w-1/2 bg-gray-100 dark:bg-[#28282B] rounded-lg max-h-[calc(80vh-0px)]">
                           <div class="flex flex-shrink-0 p-4 pb-0">
                             <a href="/profile.php?view_user_id=<?php echo $userID; ?>" class="flex-shrink-0 group block">
                               <div class="flex items-center">
@@ -642,10 +655,7 @@ if (empty($_SESSION['user_id'])) {
                           <div class="flex">
                             <p
                               class="text-base width-auto font-medium text-gray-900 dark:text-white flex-shrink m-4 fit-content break-words">
-                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum tempora mollitia laborum
-                              in
-                              quidem ullam similique qui? Eius quae cupiditate quidem ratione corporis temporibus
-                              veritatis quo asperiores, labore autem nulla.
+                              <?php echo $fetch['text_post'] ?>
                             </p>
                           </div>
 
@@ -714,7 +724,7 @@ if (empty($_SESSION['user_id'])) {
 
                           <hr class="border-gray-900 dark:border-gray-700 my-3" />
 
-                          <div class="p-4 overflow-y-auto">
+                          <div class="p-4 mb-4 overflow-y-auto max-h-[calc(55vh)]">
                             <div class="flex flex-shrink-0">
                               <a href="/profile.php?view_user_id=<?php echo $userID; ?>"
                                 class="flex-shrink-0 group block">
@@ -755,10 +765,41 @@ if (empty($_SESSION['user_id'])) {
                             <div class="flex">
                               <p
                                 class="text-base width-auto font-medium text-gray-900 dark:text-white flex-shrink my-4  fit-content break-words">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum tempora mollitia laborum
-                                in
-                                quidem ullam similique qui? Eius quae cupiditate quidem ratione corporis temporibus
-                                veritatis quo asperiores, labore autem nulla.
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero non quae placeat
+                                praesentium amet odio eveniet, mollitia earum accusamus cum vero, consectetur fuga,
+                                repudiandae perspiciatis ducimus corrupti commodi perferendis ratione modi necessitatibus
+                                blanditiis molestiae porro! Inventore velit incidunt deleniti consequatur saepe quo cum
+                                quae quam molestias non nihil repudiandae, mollitia placeat. Reprehenderit officiis,
+                                provident sint inventore, deserunt nihil veritatis praesentium, dicta sunt dolorem aut
+                                iusto libero ab molestias asperiores minima vitae quae aliquid ea repellendus odio!
+                                Possimus consectetur maiores ea quas exercitationem delectus corrupti blanditiis quibusdam
+                                quam ullam illo quisquam temporibus optio animi autem obcaecati placeat, quasi quos libero
+                                provident consequatur mollitia doloremque! Commodi rem suscipit sapiente totam tempora
+                                tenetur dolore nobis iste sint! Illo ut officia odio veniam blanditiis quas facilis autem!
+                                Aspernatur ab, modi quae laudantium voluptate dolorem fugit? Eos fuga tempora praesentium
+                                vitae harum corrupti omnis accusamus doloribus error ea id numquam natus quae accusantium
+                                alias suscipit aliquam vel, magnam minus laborum molestias eum? Deserunt, assumenda dolore
+                                et voluptatem maiores expedita suscipit ea aliquam delectus recusandae minima esse
+                                mollitia accusamus asperiores. Voluptatum suscipit deserunt impedit quibusdam reiciendis
+                                inventore veritatis voluptate, eum ratione nostrum quo molestias? Consequatur saepe ipsa
+                                quos quasi dolorem eius temporibus pariatur labore similique officia? Lorem ipsum dolor
+                                sit amet consectetur adipisicing elit. Quas eligendi id ex dolorem est at, aspernatur
+                                nostrum dolore consequatur commodi corrupti quidem optio! Alias molestiae quisquam, at
+                                blanditiis harum provident, voluptate animi laboriosam aut facere tenetur itaque nisi
+                                eveniet dolore distinctio fugit nam, ipsum error excepturi! Dolores, ipsa accusamus ad
+                                ratione nihil praesentium voluptatibus omnis. Corporis nihil sequi quis, labore sed
+                                voluptas ipsam a mollitia commodi ullam velit in iure qui rem aliquam quidem quod deserunt
+                                repellat atque inventore. Officia et tempore recusandae distinctio culpa itaque quod
+                                obcaecati quaerat, ipsam quasi debitis mollitia quo corporis molestias suscipit quis
+                                autem? Aut necessitatibus quae alias dignissimos magni aspernatur distinctio et placeat
+                                aperiam iusto quam, quos accusantium animi saepe cumque officiis ullam recusandae deleniti
+                                ipsa a beatae? Voluptatibus illo nihil rem aliquam. Numquam soluta molestiae eum odio?
+                                Quibusdam harum vel voluptatum illum odit, iusto suscipit voluptates unde cupiditate
+                                eligendi, aperiam recusandae! Nihil fuga ducimus molestiae quam iure aliquid perspiciatis
+                                possimus odio mollitia totam. Velit error impedit hic numquam, qui nemo itaque quae, autem
+                                voluptatum rerum alias vero? Deleniti quam nostrum quo praesentium, dicta perspiciatis
+                                fuga quae rem sint. Ea impedit odit nam. Ab inventore in harum a dolor iusto facere
+                                soluta. Earum, perspiciatis!
                               </p>
                             </div>
                             <div class="flex items-center">
@@ -1273,32 +1314,6 @@ if (empty($_SESSION['user_id'])) {
         imagePreviewDiv.style.display = "block";
       }
     }
-  </script>
-
-
-  <script>
-    $(document).ready(function () {
-      // Attach a hover event handler to the profile picture div
-      $('.profile-picture').hover(function () {
-        // Get the user_id from the data-user-id attribute
-        var userID = $(this).data('user-id');
-
-        // Use AJAX to fetch user information based on userID
-        $.ajax({
-          url: 'fetch_user_profile.php', // Replace with your server-side script
-          type: 'GET',
-          data: { user_id: userID },
-          success: function (data) {
-            // Update the popover content with the fetched user information
-            // Example: $('#popover-user-profile .user-name').text(data.name);
-            //          $('#popover-user-profile .user-username').text(data.username);
-          },
-          error: function () {
-            console.error('Error fetching user profile');
-          }
-        });
-      });
-    });
   </script>
 
   <!--For modals just incase -->

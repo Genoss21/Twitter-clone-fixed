@@ -579,7 +579,7 @@ if (empty($_SESSION['user_id'])) {
 
               <!-- Creat new post modal -->
               <div id="defaultModal" tabindex="-1" aria-hidden="true"
-                class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:-inset-[18px] h-[calc(100%-1rem)] max-h-full">
+                class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:-inset-0 h-[calc(100%-0rem)] max-h-full backdrop-blur-sm bg-white/10">
                 <div class="relative w-full max-w-2xl max-h-full">
                   <!-- Modal content -->
                   <div class="relative rounded-lg shadow bg-gray-100 dark:bg-[#28282B]">
@@ -677,7 +677,7 @@ if (empty($_SESSION['user_id'])) {
 
               <!-- Edit profile form -->
               <div id="profileform" tabindex="-1" aria-hidden="true"
-                class="fixed my-5 top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:-inset-[18px] h-[calc(100%-1rem)] max-h-full">
+                class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:-inset-0 h-[calc(100%-0rem)] max-h-full backdrop-blur-sm bg-white/10">
                 <div class="relative w-full max-w-2xl max-h-full">
                   <!-- Modal content -->
                   <div class="relative rounded-lg shadow bg-gray-100 dark:bg-[#28282B]">
