@@ -337,7 +337,7 @@ if (empty($_SESSION['user_id'])) {
 
               <!-- Creat new post modal -->
               <div id="defaultModal" tabindex="-1" aria-hidden="true"
-                class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:-inset-[18px] h-[calc(100%-1rem)] max-h-full">
+                class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:-inset-0 h-[calc(100%-0rem)] max-h-full backdrop-blur-sm bg-white/10">
                 <div class="relative w-full max-w-2xl max-h-full">
                   <!-- Modal content -->
                   <div class="relative rounded-lg shadow bg-gray-100 dark:bg-[#28282B]">
@@ -523,54 +523,355 @@ if (empty($_SESSION['user_id'])) {
                     <div data-popper-arrow></div>
                   </div>
 
-                  <!-- Main modal -->
-                  <div id="staticModal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true"
-                    class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                    <div class="relative w-full max-w-2xl max-h-full">
-                      <!-- Modal content -->
-                      <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                        <!-- Modal header -->
-                        <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
-                          <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                            Static modal
-                          </h3>
-                          <button type="button"
-                            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                            data-modal-hide="staticModal">
-                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                              viewBox="0 0 14 14">
-                              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                            </svg>
-                            <span class="sr-only">Close modal</span>
-                          </button>
+                  <!-- View Post modal -->
+                  <div id="ViewpostModal" tabindex="-1" aria-hidden="true"
+                    class="fixed top-0 left-0 right-0 z-50 hidden w-full overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-0rem)] max-h-full backdrop-blur-sm bg-white/10">
+                    <div class="p-relative w-[1300px]">
+                      <!-- Close button in the upper left corner -->
+                      <div class="absolute top-0 left-0 m-4">
+                        <button type="button"
+                          class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                          data-modal-hide="ViewpostModal">
+                          <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                          </svg>
+                          <span class="sr-only">Close modal</span>
+                        </button>
+                      </div>
+                      <!--Image post-->
+                      <div class="flex justify-center">
+                        <div class="w-auto">
+                          <?php if ($fetch['image_post']) { ?>
+                            <div id="uploaded_image" data-modal-target="ViewpostModal" data-modal-toggle="ViewpostModal"
+                              class="md:flex-shrink pr-6 cursor-pointer">
+                              <div class="bg-gray-100 dark:bg-[#28282B] rounded-lg">
+                                <div class="relative">
+                                  <?php
+                                  // Check the image's dimensions to determine orientation
+                                  list($width, $height) = getimagesize($fetch['image_post']);
+                                  if ($width > $height) {
+                                    // Landscape orientation
+                                    ?>
+                                    <img class="w-[1200px] h-auto md:w-auto rounded-lg"
+                                      src="<?php echo $fetch['image_post'] ?>" alt="" />
+                                  <?php } else {
+                                    // Portrait orientation or square image (no size adjustment)
+                                    ?>
+                                    <img class="w-auto h-auto md:w-full md:h-full max-h-[100vh] object-cover rounded-lg"
+                                      src="<?php echo $fetch['image_post'] ?>" alt="" />
+                                  <?php } ?>
+                                </div>
+                              </div>
+                              <div class="flex items-center justify-center my-3">
+                                <?php if ($isCurrentUserPost) { ?>
+                                  <!-- Display user-specific buttons for their own posts -->
+                                  <button
+                                    class="flex-1 flex items-center justify-center text-xs text-gray-400 hover:text-blue-400 transition duration-350 ease-in-out">
+                                    <span class="material-symbols-rounded">add_comment</span>
+                                    12.3 k
+                                  </button>
+                                  <button
+                                    class="flex-1 flex items-center justify-center text-xs text-gray-400 hover:text-green-400 transition duration-350 ease-in-out">
+                                    <span class="material-symbols-rounded">reply</span>
+                                    14 k
+                                  </button>
+                                  <button
+                                    class="flex-1 flex items-center justify-center text-xs text-gray-400 hover:text-red-600 transition duration-350 ease-in-out">
+                                    <span class="material-symbols-rounded">favorite</span>
+                                    14 k
+                                  </button>
+                                  <button
+                                    class="flex-1 flex items-center justify-center text-xs text-gray-400 hover:text-blue-400 transition duration-350 ease-in-out">
+                                    <span class="material-symbols-rounded">upload</span>
+                                  </button>
+                                <?php } else { ?>
+                                  <!-- Display buttons for other users' posts -->
+                                  <button
+                                    class="flex-1 flex items-center justify-center text-xs text-gray-400 hover:text-blue-400 transition duration-350 ease-in-out">
+                                    <span class="material-symbols-rounded">add_comment</span>
+                                    12.3 k
+                                  </button>
+                                  <button
+                                    class="flex-1 flex items-center justify-center text-xs text-gray-400 hover:text-green-400 transition duration-350 ease-in-out">
+                                    <span class="material-symbols-rounded">reply</span>
+                                    14 k
+                                  </button>
+                                  <button
+                                    class="flex-1 flex items-center justify-center text-xs text-gray-400 hover:text-red-600 transition duration-350 ease-in-out">
+                                    <span class="material-symbols-rounded">favorite</span>
+                                    14 k
+                                  </button>
+                                  <button
+                                    class="flex-1 flex items-center justify-center text-xs text-gray-400 hover:text-blue-400 transition duration-350 ease-in-out">
+                                    <span class="material-symbols-rounded">upload</span>
+                                  </button>
+                                <?php } ?>
+                              </div>
+                            </div>
+                          <?php } ?>
                         </div>
-                        <!-- Modal body -->
-                        <div class="p-6 space-y-6">
-                          <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                            With less than a month to go before the European Union enacts new consumer privacy laws for
-                            its citizens, companies around the world are updating their terms of service agreements to
-                            comply.
-                          </p>
-                          <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                            The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25
-                            and is meant to ensure a common set of data rights in the European Union. It requires
-                            organizations to notify users as soon as possible of high-risk data breaches that could
-                            personally affect them.
-                          </p>
-                        </div>
-                        <!-- Modal footer -->
-                        <div
-                          class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
-                          <button data-modal-hide="staticModal" type="button"
-                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">I
-                            accept</button>
-                          <button data-modal-hide="staticModal" type="button"
-                            class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Decline</button>
+
+                        <!--Comment section-->
+                        <div id="commentSection"
+                          class="w-1/2 bg-gray-100 dark:bg-[#28282B] rounded-lg max-h-[calc(80vh-0px)]">
+                          <div class="flex flex-shrink-0 p-4 pb-0">
+                            <a href="/profile.php?view_user_id=<?php echo $userID; ?>" class="flex-shrink-0 group block">
+                              <div class="flex items-center">
+                                <div>
+                                  <!--Profile picture-->
+                                  <div class="profile-picture" data-popover-target="popover-user-profile">
+                                    <img class="inline-block h-10 w-10 rounded-full" src="<?php echo $pictureToShow ?>"
+                                      alt="#" />
+                                  </div>
+                                </div>
+                                <div class="ml-3 items-center">
+                                  <?php
+                                  // Displays user profile User Name and User Email
+                                  $sql = "SELECT * FROM users WHERE user_id = $userID";
+                                  $result = mysqli_query($conn, $sql) or die("query unsuccessful");
+
+                                  if (mysqli_num_rows($result) > 0) {
+                                    while ($row = mysqli_fetch_assoc($result)) {
+                                      $emailParts = explode('@', $row['iUserEmail']);
+                                      $username = $emailParts[0]; // Extract the username part before '@'
+                                      ?>
+                                      <p class="text-base leading-5 font-medium text-gray-900 dark:text-white">
+                                        <?php echo $row['ifirstname'] . ' ' . $row['ilastname']; ?>
+                                      </p>
+                                      <p
+                                        class="text-sm leading-5 font-medium text-gray-400 hover:text-gray-300 transition ease-in-out duration-150">
+                                        <?php echo '@' . $username; ?>
+                                      </p>
+                                      <?php
+                                    }
+                                  }
+                                  ?>
+                                </div>
+                              </div>
+                            </a>
+                          </div>
+                          <div class="flex">
+                            <p
+                              class="text-base width-auto font-medium text-gray-900 dark:text-white flex-shrink m-4 fit-content break-words">
+                              <?php echo $fetch['text_post'] ?>
+                            </p>
+                          </div>
+
+                          <div class="flex items-center mx-4">
+                            <a href="" class="">
+                              <span
+                                class="text-sm leading-5 font-medium text-gray-400 hover:text-gray-300 transition ease-in-out duration-150">
+                                <?php
+                                $postCreated = strtotime($fetch['post_created']); // Convert to timestamp
+                                echo date('F j, Y', $postCreated); // Display in desired format 
+                                ?>
+                                <?php
+                                $timePosted = strtotime($fetch['time_posted']); // Convert to timestamp
+                                echo date('g:i A', $timePosted); // Display in desired format
+                                ?>
+                              </span>
+                            </a>
+                          </div>
+                          <hr class="border-gray-900 dark:border-gray-700 my-3" />
+                          <!--View post buttons-->
+                          <div class="flex items-center justify-center">
+                            <?php if ($isCurrentUserPost) { ?>
+                              <!-- Display user-specific buttons for their own posts -->
+                              <button
+                                class="flex-1 flex items-center justify-center text-xs text-gray-400 hover:text-blue-400 transition duration-350 ease-in-out">
+                                <span class="material-symbols-rounded">add_comment</span>
+                                12.3 k
+                              </button>
+                              <button
+                                class="flex-1 flex items-center justify-center text-xs text-gray-400 hover:text-green-400 transition duration-350 ease-in-out">
+                                <span class="material-symbols-rounded">reply</span>
+                                14 k
+                              </button>
+                              <button
+                                class="flex-1 flex items-center justify-center text-xs text-gray-400 hover:text-red-600 transition duration-350 ease-in-out">
+                                <span class="material-symbols-rounded">favorite</span>
+                                14 k
+                              </button>
+                              <button
+                                class="flex-1 flex items-center justify-center text-xs text-gray-400 hover:text-blue-400 transition duration-350 ease-in-out">
+                                <span class="material-symbols-rounded">upload</span>
+                              </button>
+                            <?php } else { ?>
+                              <!-- Display buttons for other users' posts -->
+                              <button
+                                class="flex-1 flex items-center justify-center text-xs text-gray-400 hover:text-blue-400 transition duration-350 ease-in-out">
+                                <span class="material-symbols-rounded">add_comment</span>
+                                12.3 k
+                              </button>
+                              <button
+                                class="flex-1 flex items-center justify-center text-xs text-gray-400 hover:text-green-400 transition duration-350 ease-in-out">
+                                <span class="material-symbols-rounded">reply</span>
+                                14 k
+                              </button>
+                              <button
+                                class="flex-1 flex items-center justify-center text-xs text-gray-400 hover:text-red-600 transition duration-350 ease-in-out">
+                                <span class="material-symbols-rounded">favorite</span>
+                                14 k
+                              </button>
+                              <button
+                                class="flex-1 flex items-center justify-center text-xs text-gray-400 hover:text-blue-400 transition duration-350 ease-in-out">
+                                <span class="material-symbols-rounded">upload</span>
+                              </button>
+                            <?php } ?>
+                          </div>
+
+                          <hr class="border-gray-900 dark:border-gray-700 my-3" />
+
+                          <div class="p-4 mb-4 overflow-y-auto max-h-[calc(55vh)]">
+                            <div class="flex flex-shrink-0">
+                              <a href="/profile.php?view_user_id=<?php echo $userID; ?>"
+                                class="flex-shrink-0 group block">
+                                <div class="flex items-center">
+                                  <div>
+                                    <!--Profile picture-->
+                                    <div class="profile-picture" data-popover-target="popover-user-profile">
+                                      <img class="inline-block h-10 w-10 rounded-full" src="<?php echo $pictureToShow ?>"
+                                        alt="#" />
+                                    </div>
+                                  </div>
+                                  <div class="ml-3 items-center">
+                                    <?php
+                                    // Displays user profile User Name and User Email
+                                    $sql = "SELECT * FROM users WHERE user_id = $userID";
+                                    $result = mysqli_query($conn, $sql) or die("query unsuccessful");
+
+                                    if (mysqli_num_rows($result) > 0) {
+                                      while ($row = mysqli_fetch_assoc($result)) {
+                                        $emailParts = explode('@', $row['iUserEmail']);
+                                        $username = $emailParts[0]; // Extract the username part before '@'
+                                        ?>
+                                        <p class="text-base leading-5 font-medium text-gray-900 dark:text-white">
+                                          <?php echo $row['ifirstname'] . ' ' . $row['ilastname']; ?>
+                                        </p>
+                                        <p
+                                          class="text-sm leading-5 font-medium text-gray-400 hover:text-gray-300 transition ease-in-out duration-150">
+                                          <?php echo '@' . $username; ?>
+                                        </p>
+                                        <?php
+                                      }
+                                    }
+                                    ?>
+                                  </div>
+                                </div>
+                              </a>
+                            </div>
+                            <div class="flex">
+                              <p
+                                class="text-base width-auto font-medium text-gray-900 dark:text-white flex-shrink my-4  fit-content break-words">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero non quae placeat
+                                praesentium amet odio eveniet, mollitia earum accusamus cum vero, consectetur fuga,
+                                repudiandae perspiciatis ducimus corrupti commodi perferendis ratione modi necessitatibus
+                                blanditiis molestiae porro! Inventore velit incidunt deleniti consequatur saepe quo cum
+                                quae quam molestias non nihil repudiandae, mollitia placeat. Reprehenderit officiis,
+                                provident sint inventore, deserunt nihil veritatis praesentium, dicta sunt dolorem aut
+                                iusto libero ab molestias asperiores minima vitae quae aliquid ea repellendus odio!
+                                Possimus consectetur maiores ea quas exercitationem delectus corrupti blanditiis quibusdam
+                                quam ullam illo quisquam temporibus optio animi autem obcaecati placeat, quasi quos libero
+                                provident consequatur mollitia doloremque! Commodi rem suscipit sapiente totam tempora
+                                tenetur dolore nobis iste sint! Illo ut officia odio veniam blanditiis quas facilis autem!
+                                Aspernatur ab, modi quae laudantium voluptate dolorem fugit? Eos fuga tempora praesentium
+                                vitae harum corrupti omnis accusamus doloribus error ea id numquam natus quae accusantium
+                                alias suscipit aliquam vel, magnam minus laborum molestias eum? Deserunt, assumenda dolore
+                                et voluptatem maiores expedita suscipit ea aliquam delectus recusandae minima esse
+                                mollitia accusamus asperiores. Voluptatum suscipit deserunt impedit quibusdam reiciendis
+                                inventore veritatis voluptate, eum ratione nostrum quo molestias? Consequatur saepe ipsa
+                                quos quasi dolorem eius temporibus pariatur labore similique officia? Lorem ipsum dolor
+                                sit amet consectetur adipisicing elit. Quas eligendi id ex dolorem est at, aspernatur
+                                nostrum dolore consequatur commodi corrupti quidem optio! Alias molestiae quisquam, at
+                                blanditiis harum provident, voluptate animi laboriosam aut facere tenetur itaque nisi
+                                eveniet dolore distinctio fugit nam, ipsum error excepturi! Dolores, ipsa accusamus ad
+                                ratione nihil praesentium voluptatibus omnis. Corporis nihil sequi quis, labore sed
+                                voluptas ipsam a mollitia commodi ullam velit in iure qui rem aliquam quidem quod deserunt
+                                repellat atque inventore. Officia et tempore recusandae distinctio culpa itaque quod
+                                obcaecati quaerat, ipsam quasi debitis mollitia quo corporis molestias suscipit quis
+                                autem? Aut necessitatibus quae alias dignissimos magni aspernatur distinctio et placeat
+                                aperiam iusto quam, quos accusantium animi saepe cumque officiis ullam recusandae deleniti
+                                ipsa a beatae? Voluptatibus illo nihil rem aliquam. Numquam soluta molestiae eum odio?
+                                Quibusdam harum vel voluptatum illum odit, iusto suscipit voluptates unde cupiditate
+                                eligendi, aperiam recusandae! Nihil fuga ducimus molestiae quam iure aliquid perspiciatis
+                                possimus odio mollitia totam. Velit error impedit hic numquam, qui nemo itaque quae, autem
+                                voluptatum rerum alias vero? Deleniti quam nostrum quo praesentium, dicta perspiciatis
+                                fuga quae rem sint. Ea impedit odit nam. Ab inventore in harum a dolor iusto facere
+                                soluta. Earum, perspiciatis!
+                              </p>
+                            </div>
+                            <div class="flex items-center">
+                              <a href="" class="">
+                                <span
+                                  class="ml-1 text-sm leading-5 font-medium text-gray-400 hover:text-gray-300 transition ease-in-out duration-150">
+                                  <?php
+                                  $postCreated = strtotime($fetch['post_created']); // Convert to timestamp
+                                  echo date('F j, Y', $postCreated); // Display in desired format 
+                                  ?>
+                                  <?php
+                                  $timePosted = strtotime($fetch['time_posted']); // Convert to timestamp
+                                  echo date('g:i A', $timePosted); // Display in desired format
+                                  ?>
+                                </span>
+                              </a>
+                            </div>
+                            <!--Comment buttons-->
+                            <div class="flex items-center justify-center my-3">
+                              <?php if ($isCurrentUserPost) { ?>
+                                <!-- Display user-specific buttons for their own posts -->
+                                <button
+                                  class="flex-1 flex items-center justify-center text-xs text-gray-400 hover:text-blue-400 transition duration-350 ease-in-out">
+                                  <span class="material-symbols-rounded">add_comment</span>
+                                  12.3 k
+                                </button>
+                                <button
+                                  class="flex-1 flex items-center justify-center text-xs text-gray-400 hover:text-green-400 transition duration-350 ease-in-out">
+                                  <span class="material-symbols-rounded">reply</span>
+                                  14 k
+                                </button>
+                                <button
+                                  class="flex-1 flex items-center justify-center text-xs text-gray-400 hover:text-red-600 transition duration-350 ease-in-out">
+                                  <span class="material-symbols-rounded">favorite</span>
+                                  14 k
+                                </button>
+                                <button
+                                  class="flex-1 flex items-center justify-center text-xs text-gray-400 hover:text-blue-400 transition duration-350 ease-in-out">
+                                  <span class="material-symbols-rounded">upload</span>
+                                </button>
+                              <?php } else { ?>
+                                <!-- Display buttons for other users' posts -->
+                                <button
+                                  class="flex-1 flex items-center justify-center text-xs text-gray-400 hover:text-blue-400 transition duration-350 ease-in-out">
+                                  <span class="material-symbols-rounded">add_comment</span>
+                                  12.3 k
+                                </button>
+                                <button
+                                  class="flex-1 flex items-center justify-center text-xs text-gray-400 hover:text-green-400 transition duration-350 ease-in-out">
+                                  <span class="material-symbols-rounded">reply</span>
+                                  14 k
+                                </button>
+                                <button
+                                  class="flex-1 flex items-center justify-center text-xs text-gray-400 hover:text-red-600 transition duration-350 ease-in-out">
+                                  <span class="material-symbols-rounded">favorite</span>
+                                  14 k
+                                </button>
+                                <button
+                                  class="flex-1 flex items-center justify-center text-xs text-gray-400 hover:text-blue-400 transition duration-350 ease-in-out">
+                                  <span class="material-symbols-rounded">upload</span>
+                                </button>
+                              <?php } ?>
+                            </div>
+
+                            <hr class="border-gray-900 dark:border-gray-700 my-3" />
+
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
+
 
                   <div>
                     <article class="hover:bg-gray-200 dark:hover:bg-gray-800 transition duration-350 ease-in-out">
@@ -635,7 +936,7 @@ if (empty($_SESSION['user_id'])) {
                         <?php
                         if ($fetch['image_post']) {
                           ?>
-                          <div id="uploaded_image" data-modal-target="staticModal" data-modal-toggle="staticModal"
+                          <div id="uploaded_image" data-modal-target="ViewpostModal" data-modal-toggle="ViewpostModal"
                             class="md:flex-shrink pr-6 pt-3 cursor-pointer">
                             <div>
                               <img class="bg-cover bg-no-repeat bg-center rounded-lg opacity-100 w-full h-full"
@@ -644,68 +945,51 @@ if (empty($_SESSION['user_id'])) {
                           </div>
                         <?php } ?>
 
-                        <div class="flex items-center py-4">
+                        <div class="flex items-center justify-center py-4">
                           <?php if ($isCurrentUserPost) { ?>
                             <!-- Display user-specific buttons for their own posts -->
                             <button
-                              class="flex-1 flex items-center text-xs text-gray-400 hover:text-blue-400 transition duration-350 ease-in-out">
-                              <span class="material-symbols-rounded">
-                                add_comment
-                              </span>
+                              class="flex-1 flex items-center justify-center text-xs text-gray-400 hover:text-blue-400 transition duration-350 ease-in-out">
+                              <span class="material-symbols-rounded">add_comment</span>
                               12.3 k
                             </button>
                             <button
-                              class="flex-1 flex items-center text-xs text-gray-400 hover:text-green-400 transition duration-350 ease-in-out">
-                              <span class="material-symbols-rounded">
-                                reply
-                              </span>
+                              class="flex-1 flex items-center justify-center text-xs text-gray-400 hover:text-green-400 transition duration-350 ease-in-out">
+                              <span class="material-symbols-rounded">reply</span>
                               14 k
                             </button>
                             <button
-                              class="flex-1 flex items-center text-xs text-gray-400 hover:text-red-600 transition duration-350 ease-in-out">
-                              <span class="material-symbols-rounded">
-                                favorite
-                              </span>
+                              class="flex-1 flex items-center justify-center text-xs text-gray-400 hover:text-red-600 transition duration-350 ease-in-out">
+                              <span class="material-symbols-rounded">favorite</span>
                               14 k
                             </button>
                             <button
-                              class="flex-1 flex items-center text-xs text-gray-400 hover:text-blue-400 transition duration-350 ease-in-out">
-                              <span class="absolute material-symbols-rounded">
-                                upload
-                              </span>
+                              class="flex-1 flex items-center justify-center text-xs text-gray-400 hover:text-blue-400 transition duration-350 ease-in-out">
+                              <span class="absolute material-symbols-rounded">upload</span>
                             </button>
                           <?php } else { ?>
                             <!-- Display buttons for other users' posts -->
                             <button
-                              class="flex-1 flex items-center text-xs text-gray-400 hover:text-blue-400 transition duration-350 ease-in-out">
-                              <span class="material-symbols-rounded">
-                                add_comment
-                              </span>
+                              class="flex-1 flex items-center justify-center text-xs text-gray-400 hover:text-blue-400 transition duration-350 ease-in-out">
+                              <span class="material-symbols-rounded">add_comment</span>
                               12.3 k
                             </button>
                             <button
-                              class="flex-1 flex items-center text-xs text-gray-400 hover:text-green-400 transition duration-350 ease-in-out">
-                              <span class="material-symbols-rounded">
-                                reply
-                              </span>
+                              class="flex-1 flex items-center justify-center text-xs text-gray-400 hover:text-green-400 transition duration-350 ease-in-out">
+                              <span class="material-symbols-rounded">reply</span>
                               14 k
                             </button>
                             <button
-                              class="flex-1 flex items-center text-xs text-gray-400 hover:text-red-600 transition duration-350 ease-in-out">
-                              <span class="material-symbols-rounded">
-                                favorite
-                              </span>
+                              class="flex-1 flex items-center justify-center text-xs text-gray-400 hover:text-red-600 transition duration-350 ease-in-out">
+                              <span class="material-symbols-rounded">favorite</span>
                               14 k
                             </button>
                             <button
-                              class="flex-1 flex items-center text-xs text-gray-400 hover:text-blue-400 transition duration-350 ease-in-out">
-                              <span class="absolute material-symbols-rounded">
-                                upload
-                              </span>
+                              class="flex-1 flex items-center justify-center text-xs text-gray-400 hover:text-blue-400 transition duration-350 ease-in-out">
+                              <span class="absolute material-symbols-rounded">upload</span>
                             </button>
                           <?php } ?>
                         </div>
-
 
                       </div>
                       <hr class="border-gray-900 dark:border-gray-700" />
@@ -1030,32 +1314,6 @@ if (empty($_SESSION['user_id'])) {
         imagePreviewDiv.style.display = "block";
       }
     }
-  </script>
-
-
-  <script>
-    $(document).ready(function () {
-      // Attach a hover event handler to the profile picture div
-      $('.profile-picture').hover(function () {
-        // Get the user_id from the data-user-id attribute
-        var userID = $(this).data('user-id');
-
-        // Use AJAX to fetch user information based on userID
-        $.ajax({
-          url: 'fetch_user_profile.php', // Replace with your server-side script
-          type: 'GET',
-          data: { user_id: userID },
-          success: function (data) {
-            // Update the popover content with the fetched user information
-            // Example: $('#popover-user-profile .user-name').text(data.name);
-            //          $('#popover-user-profile .user-username').text(data.username);
-          },
-          error: function () {
-            console.error('Error fetching user profile');
-          }
-        });
-      });
-    });
   </script>
 
   <!--For modals just incase -->
