@@ -60,12 +60,12 @@ if (empty($_SESSION['user_id'])) {
         <div class="w-[300px] bg-indigo-700">
           <div class="w-[300px] overflow-y-auto fixed h-screen">
             <!--Logo-->
-            <a class=" ml-6" href="/index.php"><span
+            <a class=" ml-6" href="index.php"><span
                 class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-sky-400 to-emerald-200 font-extrabold text-2xl">ツイッター</span></a>
             <!--Nav-->
             <ul class="space-y-2 my-5">
               <li>
-                <a href="/index.php"
+                <a href="index.php"
                   class="flex py-2 px-6 rounded-full text-base font-semibold transform hover:-translate-y-1 hover:bg-indigo-700 duration-200 hover:text-gray-100"><span
                     class="material-symbols-rounded mr-2"> home </span>Home</a>
               </li>
@@ -99,7 +99,7 @@ if (empty($_SESSION['user_id'])) {
                     list_alt </span>lists</a>
               </li>
               <li>
-                <a href="/profile.php"
+                <a href="profile.php"
                   class="flex py-2 px-6 rounded-full text-base font-semibold transform hover:-translate-y-1 hover:bg-indigo-700 duration-200 hover:text-white">
                   <span class="material-symbols-rounded mr-2"> person </span>Profile
                 </a>
@@ -253,7 +253,7 @@ if (empty($_SESSION['user_id'])) {
                 <div>
                   <div class="flex justify-start">
                     <div class="px-4 py-3 mx-3">
-                      <a href="/index.php"
+                      <a href="index.php"
                         class="text-2xl font-medium rounded-full text-blue-400 hover:bg-indigo-800 hover:text-blue-300 float-right">
                         <span class="p-2 material-symbols-rounded">
                           arrow_back

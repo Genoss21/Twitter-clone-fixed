@@ -64,7 +64,7 @@ if (empty($_SESSION['user_id'])) {
             <!--Nav-->
             <ul class="space-y-2 my-5">
               <li>
-                <a href="/index.php"
+                <a href="index.php"
                   class="flex py-2 px-6 rounded-full text-base font-semibold transform hover:-translate-y-1 hover:bg-indigo-700 duration-200 hover:text-white"><span
                     class="material-symbols-rounded mr-2"> home </span>Home</a>
               </li>
@@ -98,7 +98,7 @@ if (empty($_SESSION['user_id'])) {
                     list_alt </span>lists</a>
               </li>
               <li>
-                <a href="/profile.php"
+                <a href="profile.php"
                   class="flex py-2 px-6 rounded-full text-base font-semibold transform hover:-translate-y-1 hover:bg-indigo-700 duration-200 hover:text-white">
                   <span class="material-symbols-rounded mr-2"> person </span>Profile
                 </a>
@@ -148,7 +148,7 @@ if (empty($_SESSION['user_id'])) {
                     <label for="dark-toggle" class="flex items-center cursor-pointer">
                       <div class="relative">
                         <input type="checkbox" name="dark-mode" id="dark-toggle" class="checkbox hidden" />
-                        <div class="block border-[1px] dark:border-white border-gray-900 w-12 h-7 rounded-full"></div>
+                        <div class="block border-[1px] dark:border-white border-gray-800 w-12 h-7 rounded-full"></div>
                         <div
                           class="dot absolute left-1 top-1 dark:bg-white bg-gray-800 w-5 h-5 rounded-full transition">
                         </div>
@@ -249,14 +249,14 @@ if (empty($_SESSION['user_id'])) {
       <aside>
         <main role="main">
           <div class="flex w-[1010px] mx-2">
-            <section class="max-w-2xl w-5/6 border border-y-0 border-gray-900 dark:border-gray-700">
+            <section class="max-w-2xl w-5/6 border border-y-0 border-gray-200 dark:border-gray-700">
               <aside>
                 <div class="flex">
                   <div class="flex-1 mx-2">
                     <h2 class="p-4 text-xl font-semibold">Home</h2>
                   </div>
                 </div>
-                <hr class="border-gray-900 dark:border-gray-700" />
+                <hr class="border-gray-200 dark:border-gray-700" />
 
                 <!--Create new post-->
                 <form id="form1" method="POST" action="save.php" enctype="multipart/form-data">
@@ -303,7 +303,7 @@ if (empty($_SESSION['user_id'])) {
                   </div>
 
                   <!-- Buttons for Create new post -->
-                  <div class="flex justify-between border-t border-gray-700">
+                  <div class="flex justify-between border-t border-gray-200 dark:border-gray-700">
                     <div class="w-full">
                       <div class="px-2">
                         <div class="flex items-center">
@@ -332,7 +332,7 @@ if (empty($_SESSION['user_id'])) {
                 </form>
 
                 <!--End Buttons for Create new post-->
-                <hr class="border-gray-900 dark:border-gray-700" />
+                <hr class="border-gray-200 dark:border-gray-700" />
               </aside>
 
               <!-- Creat new post modal -->
@@ -617,7 +617,7 @@ if (empty($_SESSION['user_id'])) {
                         <div id="commentSection"
                           class="w-1/2 bg-gray-100 dark:bg-[#28282B] rounded-lg max-h-[calc(80vh-0px)]">
                           <div class="flex flex-shrink-0 p-4 pb-0">
-                            <a href="/profile.php?view_user_id=<?php echo $userID; ?>" class="flex-shrink-0 group block">
+                            <a href="profile.php?view_user_id=<?php echo $userID; ?>" class="flex-shrink-0 group block">
                               <div class="flex items-center">
                                 <div>
                                   <!--Profile picture-->
@@ -674,7 +674,7 @@ if (empty($_SESSION['user_id'])) {
                               </span>
                             </a>
                           </div>
-                          <hr class="border-gray-900 dark:border-gray-700 my-3" />
+                          <hr class="border-gray-200 dark:border-gray-700 my-3" />
                           <!--View post buttons-->
                           <div class="flex items-center justify-center">
                             <?php if ($isCurrentUserPost) { ?>
@@ -722,12 +722,11 @@ if (empty($_SESSION['user_id'])) {
                             <?php } ?>
                           </div>
 
-                          <hr class="border-gray-900 dark:border-gray-700 my-3" />
+                          <hr class="border-gray-200 dark:border-gray-700 my-3" />
 
                           <div class="p-4 mb-4 overflow-y-auto max-h-[calc(55vh)]">
                             <div class="flex flex-shrink-0">
-                              <a href="/profile.php?view_user_id=<?php echo $userID; ?>"
-                                class="flex-shrink-0 group block">
+                              <a href="profile.php?view_user_id=<?php echo $userID; ?>" class="flex-shrink-0 group block">
                                 <div class="flex items-center">
                                   <div>
                                     <!--Profile picture-->
@@ -864,7 +863,7 @@ if (empty($_SESSION['user_id'])) {
                               <?php } ?>
                             </div>
 
-                            <hr class="border-gray-900 dark:border-gray-700 my-3" />
+                            <hr class="border-gray-200 dark:border-gray-700 my-3" />
 
                           </div>
                         </div>
@@ -876,7 +875,7 @@ if (empty($_SESSION['user_id'])) {
                   <div>
                     <article class="hover:bg-gray-200 dark:hover:bg-gray-800 transition duration-350 ease-in-out">
                       <div class="flex flex-shrink-0 p-4 pb-0">
-                        <a href="/profile.php?view_user_id=<?php echo $userID; ?>" class="flex-shrink-0 group block">
+                        <a href="profile.php?view_user_id=<?php echo $userID; ?>" class="flex-shrink-0 group block">
                           <div class="flex items-center">
                             <div>
 
@@ -992,7 +991,7 @@ if (empty($_SESSION['user_id'])) {
                         </div>
 
                       </div>
-                      <hr class="border-gray-900 dark:border-gray-700" />
+                      <hr class="border-gray-200 dark:border-gray-700" />
                     </article>
                   </div>
                   <!--End of Post-->
