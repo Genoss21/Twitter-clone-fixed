@@ -59,12 +59,12 @@ if (empty($_SESSION['user_id'])) {
         <div class="w-[300px] bg-indigo-700">
           <div class="w-[300px] overflow-y-auto fixed h-screen">
             <!--Logo-->
-            <a class=" ml-6" href="/index.php"><span
+            <a class=" ml-6" href="index.php"><span
                 class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-sky-400 to-emerald-200 font-extrabold text-2xl">ツイッター</span></a>
             <!--Nav-->
             <ul class="space-y-2 my-5">
               <li>
-                <a href="index.php"
+                <a href="/index.php"
                   class="flex py-2 px-6 rounded-full text-base font-semibold transform hover:-translate-y-1 hover:bg-indigo-700 duration-200 hover:text-white"><span
                     class="material-symbols-rounded mr-2"> home </span>Home</a>
               </li>
@@ -148,7 +148,7 @@ if (empty($_SESSION['user_id'])) {
                     <label for="dark-toggle" class="flex items-center cursor-pointer">
                       <div class="relative">
                         <input type="checkbox" name="dark-mode" id="dark-toggle" class="checkbox hidden" />
-                        <div class="block border-[1px] dark:border-white border-gray-800 w-12 h-7 rounded-full"></div>
+                        <div class="block border-[1px] dark:border-white border-gray-900 w-12 h-7 rounded-full"></div>
                         <div
                           class="dot absolute left-1 top-1 dark:bg-white bg-gray-800 w-5 h-5 rounded-full transition">
                         </div>
@@ -249,14 +249,14 @@ if (empty($_SESSION['user_id'])) {
       <aside>
         <main role="main">
           <div class="flex w-[1010px] mx-2">
-            <section class="max-w-2xl w-5/6 border border-y-0 border-gray-200 dark:border-gray-700">
+            <section class="max-w-2xl w-5/6 border border-y-0 border-gray-900 dark:border-gray-700">
               <aside>
                 <div class="flex">
                   <div class="flex-1 mx-2">
                     <h2 class="p-4 text-xl font-semibold">Home</h2>
                   </div>
                 </div>
-                <hr class="border-gray-200 dark:border-gray-700" />
+                <hr class="border-gray-900 dark:border-gray-700" />
 
                 <!--Create new post-->
                 <form id="form1" method="POST" action="save.php" enctype="multipart/form-data">
@@ -303,7 +303,7 @@ if (empty($_SESSION['user_id'])) {
                   </div>
 
                   <!-- Buttons for Create new post -->
-                  <div class="flex justify-between border-t border-gray-200 dark:border-gray-700">
+                  <div class="flex justify-between border-t border-gray-700">
                     <div class="w-full">
                       <div class="px-2">
                         <div class="flex items-center">
@@ -332,7 +332,7 @@ if (empty($_SESSION['user_id'])) {
                 </form>
 
                 <!--End Buttons for Create new post-->
-                <hr class="border-gray-200 dark:border-gray-700" />
+                <hr class="border-gray-900 dark:border-gray-700" />
               </aside>
 
               <!-- Creat new post modal -->
@@ -472,43 +472,41 @@ if (empty($_SESSION['user_id'])) {
                   }
                   ?>
 
+                  <?php 
+                      $popover_query = "SELECT * FROM userposts WHERE post_id = $postId";
+                      $popover_queryR = mysqli_query($conn, $popover_query);
+                  
+                      if (mysqli_num_rows($popover_queryR)){
+                        while($popovershit = mysqli_fetch_assoc($popover_queryR)){
+                          $thisid = $popovershit['user_id'];
+          
+                          $popover_user_query = "SELECT * FROM users WHERE user_id = $thisid";
+                          $poq_result = mysqli_query($conn, $popover_user_query);
+                          if (mysqli_num_rows($poq_result)){
+                            while($popoveruser = mysqli_fetch_assoc($poq_result)){
+                          
+                  ?>
+                   
                   <!--Popover-->
-                  <div data-popover id="popover-user-profile" role="tooltip"
+                  <div data-popover id="popover-user-profile<?php echo $postId ?>" role="tooltip"
                     class="absolute z-10 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600">
                     <div class="p-3">
                       <div class="flex items-center justify-between mb-2">
                         <a href="#">
                           <img class="w-10 h-10 rounded-full" src="<?php echo $pictureToShow ?>" alt="">
                         </a>
+                        <p class="text-sm text-neutral-800 font-semibold dark:text-white"><?php echo $popoveruser['ifirstname']; ?> <?php echo $popoveruser['ilastname']; ?></p>
                         <div>
                           <button type="button"
                             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-xs px-3 py-1.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Follow</button>
                         </div>
                       </div>
-                      <p class="text-base font-semibold leading-none text-gray-900 dark:text-white">
-                        <?php
-                        // Displays user profile User Name and User Email
-                        $sql = "SELECT * FROM users WHERE user_id = $userID";
-                        $result = mysqli_query($conn, $sql) or die("query unsuccessful");
-                        if (mysqli_num_rows($result) > 0) {
-                          while ($row = mysqli_fetch_assoc($result)) {
-                            $emailParts = explode('@', $row['iUserEmail']);
-                            $username = $emailParts[0]; // Extract the username part before '@'
-                      
-                            echo $row['ifirstname'] . ' ' . $row['ilastname'] . ' ';
-
-                            // Display "@" followed by the extracted username
-                            echo '<span class="text-sm leading-5 font-medium text-gray-400 hover:text-gray-300 transition ease-in-out duration-150">@' . $username . '</span>';
-                          }
-                        }
-                        ?>
-                      </p>
                       <p class="mb-4 text-sm">Open-source contributor. Building <a href="#"
                           class="text-blue-600 dark:text-blue-500 hover:underline">flowbite.com</a>.</p>
                       <ul class="flex text-sm">
                         <li class="mr-2">
                           <a href="#" class="hover:underline">
-                            <span class="font-semibold text-gray-900 dark:text-white">799</span>
+                            <span class="font-semibold text-gray-900 dark:text-white"><?php echo $popovershit['user_id']; ?></span>
                             <span>Following</span>
                           </a>
                         </li>
@@ -523,6 +521,12 @@ if (empty($_SESSION['user_id'])) {
                     <div data-popper-arrow></div>
                   </div>
 
+                  <?php 
+                  
+                        }}}}
+                  ?>
+
+                 
                   <!-- View Post modal -->
                   <div id="ViewpostModal" tabindex="-1" aria-hidden="true"
                     class="fixed top-0 left-0 right-0 z-50 hidden w-full overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-0rem)] max-h-full backdrop-blur-sm bg-white/10">
@@ -674,7 +678,7 @@ if (empty($_SESSION['user_id'])) {
                               </span>
                             </a>
                           </div>
-                          <hr class="border-gray-200 dark:border-gray-700 my-3" />
+                          <hr class="border-gray-900 dark:border-gray-700 my-3" />
                           <!--View post buttons-->
                           <div class="flex items-center justify-center">
                             <?php if ($isCurrentUserPost) { ?>
@@ -722,11 +726,12 @@ if (empty($_SESSION['user_id'])) {
                             <?php } ?>
                           </div>
 
-                          <hr class="border-gray-200 dark:border-gray-700 my-3" />
+                          <hr class="border-gray-900 dark:border-gray-700 my-3" />
 
                           <div class="p-4 mb-4 overflow-y-auto max-h-[calc(55vh)]">
                             <div class="flex flex-shrink-0">
-                              <a href="profile.php?view_user_id=<?php echo $userID; ?>" class="flex-shrink-0 group block">
+                              <a href="profile.php?view_user_id=<?php echo $userID; ?>"
+                                class="flex-shrink-0 group block">
                                 <div class="flex items-center">
                                   <div>
                                     <!--Profile picture-->
@@ -863,14 +868,13 @@ if (empty($_SESSION['user_id'])) {
                               <?php } ?>
                             </div>
 
-                            <hr class="border-gray-200 dark:border-gray-700 my-3" />
+                            <hr class="border-gray-900 dark:border-gray-700 my-3" />
 
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-
 
                   <div>
                     <article class="hover:bg-gray-200 dark:hover:bg-gray-800 transition duration-350 ease-in-out">
@@ -880,7 +884,7 @@ if (empty($_SESSION['user_id'])) {
                             <div>
 
                               <!--Profile picture-->
-                              <div class="profile-picture" data-popover-target="popover-user-profile">
+                              <div class="profile-picture" data-popover-target="popover-user-profile<?php echo $postId ?>">
                                 <img class="inline-block h-10 w-10 rounded-full" src="<?php echo $pictureToShow ?>"
                                   alt="#" />
                               </div>
@@ -991,7 +995,7 @@ if (empty($_SESSION['user_id'])) {
                         </div>
 
                       </div>
-                      <hr class="border-gray-200 dark:border-gray-700" />
+                      <hr class="border-gray-900 dark:border-gray-700" />
                     </article>
                   </div>
                   <!--End of Post-->
