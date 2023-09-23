@@ -149,7 +149,7 @@ if (empty($_SESSION['user_id'])) {
                     <label for="dark-toggle" class="flex items-center cursor-pointer">
                       <div class="relative">
                         <input type="checkbox" name="dark-mode" id="dark-toggle" class="checkbox hidden" />
-                        <div class="block border-[1px] dark:border-white border-gray-900 w-12 h-7 rounded-full"></div>
+                        <div class="block border-[1px] dark:border-white border-gray-300 w-12 h-7 rounded-full"></div>
                         <div
                           class="dot absolute left-1 top-1 dark:bg-white bg-gray-800 w-5 h-5 rounded-full transition">
                         </div>
@@ -246,7 +246,7 @@ if (empty($_SESSION['user_id'])) {
       <aside>
         <main role="main" class="">
           <div class="flex w-[1010px] mx-2">
-            <section class="max-w-2xl w-5/6 border border-y-0 border-gray-900 dark:border-gray-700">
+            <section class="max-w-2xl w-5/6 border border-y-0 border-gray-300 dark:border-gray-700">
               <aside>
 
                 <!-- Nav back-->
@@ -288,7 +288,7 @@ if (empty($_SESSION['user_id'])) {
                     </div>
                   </div>
 
-                  <hr class="border-gray-900 dark:border-gray-700" />
+                  <hr class="border-gray-300 dark:border-gray-700" />
                 </div>
 
                 <!-- User card-->
@@ -363,7 +363,7 @@ if (empty($_SESSION['user_id'])) {
                             }
 
                             // Display the profile picture
-                            echo '<img src="' . $profilePictureUrl . '" alt="" class="h-36 w-36 md rounded-full relative border-4 border-gray-900" />';
+                            echo '<img src="' . $profilePictureUrl . '" alt="" class="h-36 w-36 md rounded-full relative border-4 border-gray-300" />';
                             ?>
                             <div class="absolute"></div>
                           </div>
@@ -470,7 +470,8 @@ if (empty($_SESSION['user_id'])) {
                               </g>
                             </svg>
                             <a href="https://www.facebook.com/FrtzRome/" target="#"
-                              class="leading-5 ml-1 text-blue-400"><?php
+                              class="leading-5 ml-1 text-blue-400">
+                              <?php
                               if (isset($_GET['view_user_id'])) {
                                 // Retrieve and display the website for the user being viewed
                                 $viewingUserId = $_GET['view_user_id'];
@@ -486,7 +487,8 @@ if (empty($_SESSION['user_id'])) {
                                 // Display the website of the currently logged-in user
                                 echo $_SESSION['website'];
                               }
-                              ?></a></span>
+                              ?>
+                            </a></span>
                           <span class="flex mr-2"><svg viewBox="0 0 24 24" class="h-5 w-5 paint-icon">
                               <g>
                                 <path
@@ -573,7 +575,7 @@ if (empty($_SESSION['user_id'])) {
                   </div>
                 </div>
 
-                <hr class="border-gray-900 dark:border-gray-700" />
+                <hr class="border-gray-300 dark:border-gray-700" />
 
               </aside>
 
@@ -801,7 +803,7 @@ if (empty($_SESSION['user_id'])) {
                                   }
 
                                   // Display the profile picture
-                                  echo '<img src="' . $profilePictureUrl . '" alt="" class="brightness-50 h-36 w-36 md rounded-full relative border-4 border-gray-900" />';
+                                  echo '<img src="' . $profilePictureUrl . '" alt="" class="brightness-50 h-36 w-36 md rounded-full relative border-4 border-gray-300" />';
                                   ?>
                                   <div class="absolute"></div>
                                 </div>
@@ -1191,7 +1193,7 @@ if (empty($_SESSION['user_id'])) {
                           <?php } ?>
                         </div>
                       </div>
-                      <hr class="border-gray-900 dark:border-gray-400" />
+                      <hr class="border-gray-300 dark:border-gray-400" />
                     </article>
                   </div>
                   <!--End of Post-->
