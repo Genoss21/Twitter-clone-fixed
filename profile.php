@@ -987,6 +987,39 @@ if (empty($_SESSION['user_id'])) {
                   </div>
                 </div>
               </div>
+
+
+              <!-- Edit post form -->
+              <div id="editprofileform" tabindex="-1" aria-hidden="true"
+                class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:-inset-0 h-[calc(100%-0rem)] max-h-full backdrop-blur-sm bg-white/10">
+                <div class="relative w-full max-w-2xl max-h-full">
+                  <!-- Modal content -->
+                  <div class="relative rounded-lg shadow bg-gray-100 dark:bg-[#28282B]">
+                    <!-- Modal header -->
+                    <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-700">
+                      <h3
+                        class="text-xl font-semibold hover:text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-sky-400 to-emerald-200">
+                        Edit Post
+                      </h3>
+                      <button type="button"
+                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-gray-100"
+                        data-modal-hide="editprofileform">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                          viewBox="0 0 14 14">
+                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                      </button>
+                    </div>
+                    <!-- Edit profile body -->
+                    <form method="POST" action="update_profile.php" enctype="multipart/form-data">
+
+                  </div>
+                  </form>
+                </div>
+              </div>
+              <!--End of edit post-->
               <ul class="list-none">
 
                 <!--List of post-->
@@ -1028,7 +1061,7 @@ if (empty($_SESSION['user_id'])) {
                   <!--Post-->
                   <div>
                     <article class="hover:bg-gray-200 dark:hover:bg-gray-800 transition duration-350 ease-in-out">
-                      <div class="flex flex-shrink-0 p-4 pb-0">
+                      <div class="grid p-4 pb-0">
                         <a href="#" class="flex-shrink-0 group block">
                           <div class="flex items-center">
 
@@ -1061,11 +1094,10 @@ if (empty($_SESSION['user_id'])) {
                               echo '<img src="' . $profilePictureUrl . '" alt="" class="inline-block h-10 w-10 rounded-full" />';
                               ?>
 
-
                             </div>
 
                             <div class="ml-3">
-                              <p class="text-base leading-6 font-medium text-gray-900 dark:text-gray-100">
+                              <p class="w-[500px] text-base leading-6 font-medium text-gray-900 dark:text-gray-100">
                                 <?php
                                 if (isset($_GET['view_user_id'])) {
                                   $viewingUserId = $_GET['view_user_id'];
@@ -1110,6 +1142,12 @@ if (empty($_SESSION['user_id'])) {
                               </p>
                             </div>
 
+                            <button type="button" class="flex ml-auto justify-end" data-modal-target="editprofileform"
+                              data-modal-toggle="editprofileform">
+                              <span class="material-symbols-rounded">
+                                more_vert
+                              </span>
+                            </button>
 
                           </div>
                         </a>
