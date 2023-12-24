@@ -149,7 +149,7 @@ if (empty($_SESSION['user_id'])) {
                     <label for="dark-toggle" class="flex items-center cursor-pointer">
                       <div class="relative">
                         <input type="checkbox" name="dark-mode" id="dark-toggle" class="checkbox hidden" />
-                        <div class="block border-[1px] dark:border-white border-gray-900 w-12 h-7 rounded-full"></div>
+                        <div class="block border-[1px] dark:border-white border-gray-300 w-12 h-7 rounded-full"></div>
                         <div
                           class="dot absolute left-1 top-1 dark:bg-white bg-gray-800 w-5 h-5 rounded-full transition">
                         </div>
@@ -246,7 +246,7 @@ if (empty($_SESSION['user_id'])) {
       <aside>
         <main role="main" class="">
           <div class="flex w-[1010px] mx-2">
-            <section class="max-w-2xl w-5/6 border border-y-0 border-gray-900 dark:border-gray-700">
+            <section class="max-w-2xl w-5/6 border border-y-0 border-gray-300 dark:border-gray-700">
               <aside>
 
                 <!-- Nav back-->
@@ -288,7 +288,7 @@ if (empty($_SESSION['user_id'])) {
                     </div>
                   </div>
 
-                  <hr class="border-gray-900 dark:border-gray-700" />
+                  <hr class="border-gray-300 dark:border-gray-700" />
                 </div>
 
                 <!-- User card-->
@@ -363,7 +363,7 @@ if (empty($_SESSION['user_id'])) {
                             }
 
                             // Display the profile picture
-                            echo '<img src="' . $profilePictureUrl . '" alt="" class="h-36 w-36 md rounded-full relative border-4 border-gray-900" />';
+                            echo '<img src="' . $profilePictureUrl . '" alt="" class="h-36 w-36 md rounded-full relative border-4 border-gray-300" />';
                             ?>
                             <div class="absolute"></div>
                           </div>
@@ -381,19 +381,19 @@ if (empty($_SESSION['user_id'])) {
                           // Show the "Edit Profile" button if it's the logged-in user's profile
                           if ($loggedInUserId == $viewUserId) {
                             ?>
-                            <button data-modal-target="profileform" data-modal-toggle="profileform" type="button"
-                              class="flex justify-center mt-2 mr-4 max-h-max whitespace-nowrap focus:outline-none focus:ring max-w-max border bg-transparent border-blue-500 text-blue-500 hover:text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-sky-400 to-emerald-200 hover:border-blue-800 items-center hover:shadow-lg font-bold py-1 px-3 rounded-full mr-0 ml-auto">
-                              Edit Profile
-                            </button>
-                            <?php
+                                                                                                                    <button data-modal-target="profileform" data-modal-toggle="profileform" type="button"
+                                                                                                                      class="flex justify-center mt-2 mr-4 max-h-max whitespace-nowrap focus:outline-none focus:ring max-w-max border bg-transparent border-blue-500 text-blue-500 hover:text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-sky-400 to-emerald-200 hover:border-blue-800 items-center hover:shadow-lg font-bold py-1 px-3 rounded-full mr-0 ml-auto">
+                                                                                                                      Edit Profile
+                                                                                                                    </button>
+                                                                                                                    <?php
                           } else {
                             ?>
-                            <!-- Show the Follow button if it's someone else's profile -->
-                            <button data-modal-target="" data-modal-toggle="" type="button"
-                              class="flex justify-center mt-2 mr-4 max-h-max whitespace-nowrap focus:outline-none focus:ring max-w-max border bg-transparent border-blue-500 text-blue-500 hover:border-blue-800 hover:text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-sky-400 to-emerald-200 items-center hover:shadow-lg font-bold py-1 px-8 rounded-full mr-0 ml-auto">
-                              Follow
-                            </button>
-                            <?php
+                                                                                                                    <!-- Show the Follow button if it's someone else's profile -->
+                                                                                                                    <button data-modal-target="" data-modal-toggle="" type="button"
+                                                                                                                      class="flex justify-center mt-2 mr-4 max-h-max whitespace-nowrap focus:outline-none focus:ring max-w-max border bg-transparent border-blue-500 text-blue-500 hover:border-blue-800 hover:text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-sky-400 to-emerald-200 items-center hover:shadow-lg font-bold py-1 px-8 rounded-full mr-0 ml-auto">
+                                                                                                                      Follow
+                                                                                                                    </button>
+                                                                                                                    <?php
                           }
                         }
                         ?>
@@ -470,7 +470,8 @@ if (empty($_SESSION['user_id'])) {
                               </g>
                             </svg>
                             <a href="https://www.facebook.com/FrtzRome/" target="#"
-                              class="leading-5 ml-1 text-blue-400"><?php
+                              class="leading-5 ml-1 text-blue-400">
+                              <?php
                               if (isset($_GET['view_user_id'])) {
                                 // Retrieve and display the website for the user being viewed
                                 $viewingUserId = $_GET['view_user_id'];
@@ -486,7 +487,8 @@ if (empty($_SESSION['user_id'])) {
                                 // Display the website of the currently logged-in user
                                 echo $_SESSION['website'];
                               }
-                              ?></a></span>
+                              ?>
+                            </a></span>
                           <span class="flex mr-2"><svg viewBox="0 0 24 24" class="h-5 w-5 paint-icon">
                               <g>
                                 <path
@@ -573,7 +575,7 @@ if (empty($_SESSION['user_id'])) {
                   </div>
                 </div>
 
-                <hr class="border-gray-900 dark:border-gray-700" />
+                <hr class="border-gray-300 dark:border-gray-700" />
 
               </aside>
 
@@ -801,7 +803,7 @@ if (empty($_SESSION['user_id'])) {
                                   }
 
                                   // Display the profile picture
-                                  echo '<img src="' . $profilePictureUrl . '" alt="" class="brightness-50 h-36 w-36 md rounded-full relative border-4 border-gray-900" />';
+                                  echo '<img src="' . $profilePictureUrl . '" alt="" class="brightness-50 h-36 w-36 md rounded-full relative border-4 border-gray-300" />';
                                   ?>
                                   <div class="absolute"></div>
                                 </div>
@@ -985,6 +987,156 @@ if (empty($_SESSION['user_id'])) {
                   </div>
                 </div>
               </div>
+
+
+              <!-- Edit post form -->
+              <div id="editprofileform" tabindex="-1" aria-hidden="true"
+                class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:-inset-0 h-[calc(100%-0rem)] max-h-full backdrop-blur-sm bg-white/10">
+                <div class="relative w-full max-w-2xl max-h-full">
+                  <!-- Modal content -->
+                  <div class="relative rounded-lg shadow bg-gray-100 dark:bg-[#28282B]">
+                    <!-- Modal header -->
+                    <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-700">
+                      <h3
+                        class="text-xl font-semibold hover:text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-sky-400 to-emerald-200">
+                        Edit Post
+                      </h3>
+                      <button type="button"
+                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-gray-100"
+                        data-modal-hide="editprofileform">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                          viewBox="0 0 14 14">
+                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                      </button>
+                    </div>
+                    <!-- Edit profile body -->
+                    <form method="POST" action="update_profile.php" enctype="multipart/form-data">
+                      <div class="">
+                        <article class="hover:bg-gray-200 dark:hover:bg-gray-800 transition duration-350 ease-in-out rounded-lg">
+                          <div class="grid p-4 pb-0">
+
+                            <div class="flex items-center">
+                              <!--Profile pciture-->
+                              <div>
+                                <?php
+                                // Set the default profile picture
+                                $defaultProfilePicture = 'Images/user1.jpg';
+
+                                // Determine the viewing user ID
+                                if (isset($_GET['view_user_id'])) {
+                                  $viewingUserId = $_GET['view_user_id'];
+                                } else if (isset($_SESSION['user_id'])) {
+                                  $viewingUserId = $_SESSION['user_id'];
+                                } else {
+                                  // Handle the case when the user is not logged in or $_SESSION['user_id'] is not set
+                                  // You may want to set a default user ID or take appropriate action here
+                                  $viewingUserId = null; // Set to a default or handle as needed
+                                }
+
+                                // Retrieve profile picture URL for the viewing user
+                                $sql = "SELECT profile_picture FROM users WHERE user_id = $viewingUserId";
+                                $result = mysqli_query($conn, $sql) or die("Query unsuccessful");
+
+                                // Fetch the profile picture URL
+                                $row = mysqli_fetch_assoc($result);
+                                $profilePictureUrl = ($row && !empty($row['profile_picture'])) ? $row['profile_picture'] : $defaultProfilePicture;
+
+                                // Display the profile picture
+                                echo '<img src="' . $profilePictureUrl . '" alt="" class="inline-block h-10 w-10 rounded-full" />';
+                                ?>
+
+                              </div>
+
+                              <div class="ml-3">
+                                <p class="w-[500px] text-base leading-6 font-medium text-gray-900 dark:text-gray-100">
+                                  <?php
+                                  if (isset($_GET['view_user_id'])) {
+                                    $viewingUserId = $_GET['view_user_id'];
+
+                                    $sql = "SELECT * FROM users WHERE user_id = $viewingUserId";
+                                    $result = mysqli_query($conn, $sql) or die("query unsuccessful");
+                                    if (mysqli_num_rows($result) > 0) {
+                                      $row = mysqli_fetch_assoc($result);
+                                      $emailParts = explode('@', $row['iUserEmail']);
+                                      $username = $emailParts[0]; // Get the username before '@gmail.com'
+                                  
+                                      echo $row['ifirstname'] . ' ' . $row['ilastname'];
+
+                                      echo ' <span class="text-sm leading-5 font-medium text-gray-400 hover:text-gray-300 transition ease-in-out duration-150">@';
+                                      echo $username; // Display the username
+                                      echo '</span>';
+
+
+                                      echo ' <span class="text-sm leading-5 font-medium text-gray-400 hover:text-gray-300 transition ease-in-out duration-150">';
+                                      echo date('F j, Y', ) . ' ' . date('g:i A', );
+                                      echo '</span>';
+                                    }
+                                  } else {
+                                    $emailParts = explode('@', $_SESSION['iUserEmail']);
+                                    $username = $emailParts[0]; // Get the username before '@gmail.com'
+                                  
+                                    echo $_SESSION['ifirstname'] . ' ' . $_SESSION['ilastname'];
+
+                                    // Display the username
+                                    echo ' <span class="text-sm leading-5 font-medium text-gray-400 hover:text-gray-300 transition ease-in-out duration-150">@';
+                                    echo $username;
+                                    echo '</span>';
+
+
+                                    echo ' <span class="text-sm leading-5 font-medium text-gray-400 hover:text-gray-300 transition ease-in-out duration-150">';
+                                    echo date('F j, Y', ) . ' ' . date('g:i A', );
+                                    echo '</span>';
+                                  }
+                                  ?>
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="pl-16 overflow-none">
+    <p class="text-base width-auto font-medium text-gray-900 dark:text-gray-100 flex-shrink mx-2 fit-content break-words">
+        <!-- Sample text content, replace with actual content -->
+        Sample Text Content
+    </p>
+    <!-- Display image if available -->
+    <div id="uploaded_image" class="md:flex-shrink pr-6 pt-3">
+        <div>
+            <!-- Sample image source, replace with actual image source -->
+            <img class="bg-cover bg-no-repeat bg-center rounded-lg opacity-100 w-full h-full" src="sample_image.jpg" alt="" />
+        </div>
+    </div>
+    <!-- Display action buttons -->
+    <div class="flex items-center py-4">
+        <!-- Sample buttons, replace with actual buttons and counts -->
+        <button class="flex-1 flex items-center text-xs text-gray-400 hover:text-blue-400 transition duration-350 ease-in-out">
+            <span class="material-symbols-rounded">add_comment</span>
+            12.3 k
+        </button>
+        <button class="flex-1 flex items-center text-xs text-gray-400 hover:text-green-400 transition duration-350 ease-in-out">
+            <span class="material-symbols-rounded">reply</span>
+            14 k
+        </button>
+        <button class="flex-1 flex items-center text-xs text-gray-400 hover:text-red-600 transition duration-350 ease-in-out">
+            <span class="material-symbols-rounded">favorite</span>
+            14 k
+        </button>
+        <button class="flex-1 flex items-center text-xs text-gray-400 hover:text-blue-400 transition duration-350 ease-in-out">
+            <span class="absolute material-symbols-rounded">upload</span>
+        </button>
+    </div>
+</div>
+
+
+                        </article>
+                      </div>
+                  </div>
+                  </form>
+                </div>
+              </div>
+              <!--End of edit post-->
               <ul class="list-none">
 
                 <!--List of post-->
@@ -1023,180 +1175,202 @@ if (empty($_SESSION['user_id'])) {
                   // $userID = $fetch['user_id'];
                   ?>
 
-                  <!--Post-->
-                  <div>
-                    <article class="hover:bg-gray-200 dark:hover:bg-gray-800 transition duration-350 ease-in-out">
-                      <div class="flex flex-shrink-0 p-4 pb-0">
-                        <a href="#" class="flex-shrink-0 group block">
-                          <div class="flex items-center">
+                                                              <!--Post-->
+                                                              <div>
+                                                                <article class="hover:bg-gray-200 dark:hover:bg-gray-800 transition duration-350 ease-in-out">
+                                                                  <div class="grid p-4 pb-0">
 
-                            <!--Profile pciture-->
-                            <div>
-                              <?php
-                              // Set the default profile picture
-                              $defaultProfilePicture = 'Images/user1.jpg';
+                                                                    <div class="flex items-center">
 
-                              // Determine the viewing user ID
-                              if (isset($_GET['view_user_id'])) {
-                                $viewingUserId = $_GET['view_user_id'];
-                              } else if (isset($_SESSION['user_id'])) {
-                                $viewingUserId = $_SESSION['user_id'];
-                              } else {
-                                // Handle the case when the user is not logged in or $_SESSION['user_id'] is not set
-                                // You may want to set a default user ID or take appropriate action here
-                                $viewingUserId = null; // Set to a default or handle as needed
-                              }
+                                                                      <!--Profile pciture-->
+                                                                      <div>
+                                                                        <?php
+                                                                        // Set the default profile picture
+                                                                        $defaultProfilePicture = 'Images/user1.jpg';
 
-                              // Retrieve profile picture URL for the viewing user
-                              $sql = "SELECT profile_picture FROM users WHERE user_id = $viewingUserId";
-                              $result = mysqli_query($conn, $sql) or die("Query unsuccessful");
+                                                                        // Determine the viewing user ID
+                                                                        if (isset($_GET['view_user_id'])) {
+                                                                          $viewingUserId = $_GET['view_user_id'];
+                                                                        } else if (isset($_SESSION['user_id'])) {
+                                                                          $viewingUserId = $_SESSION['user_id'];
+                                                                        } else {
+                                                                          // Handle the case when the user is not logged in or $_SESSION['user_id'] is not set
+                                                                          // You may want to set a default user ID or take appropriate action here
+                                                                          $viewingUserId = null; // Set to a default or handle as needed
+                                                                        }
 
-                              // Fetch the profile picture URL
-                              $row = mysqli_fetch_assoc($result);
-                              $profilePictureUrl = ($row && !empty($row['profile_picture'])) ? $row['profile_picture'] : $defaultProfilePicture;
+                                                                        // Retrieve profile picture URL for the viewing user
+                                                                        $sql = "SELECT profile_picture FROM users WHERE user_id = $viewingUserId";
+                                                                        $result = mysqli_query($conn, $sql) or die("Query unsuccessful");
 
-                              // Display the profile picture
-                              echo '<img src="' . $profilePictureUrl . '" alt="" class="inline-block h-10 w-10 rounded-full" />';
-                              ?>
+                                                                        // Fetch the profile picture URL
+                                                                        $row = mysqli_fetch_assoc($result);
+                                                                        $profilePictureUrl = ($row && !empty($row['profile_picture'])) ? $row['profile_picture'] : $defaultProfilePicture;
 
+                                                                        // Display the profile picture
+                                                                        echo '<img src="' . $profilePictureUrl . '" alt="" class="inline-block h-10 w-10 rounded-full" />';
+                                                                        ?>
 
-                            </div>
+                                                                      </div>
 
-                            <div class="ml-3">
-                              <p class="text-base leading-6 font-medium text-gray-900 dark:text-gray-100">
-                                <?php
-                                if (isset($_GET['view_user_id'])) {
-                                  $viewingUserId = $_GET['view_user_id'];
+                                                                      <div class="ml-3">
+                                                                        <p class="w-[500px] text-base leading-6 font-medium text-gray-900 dark:text-gray-100">
+                                                                          <?php
+                                                                          if (isset($_GET['view_user_id'])) {
+                                                                            $viewingUserId = $_GET['view_user_id'];
 
-                                  $sql = "SELECT * FROM users WHERE user_id = $viewingUserId";
-                                  $result = mysqli_query($conn, $sql) or die("query unsuccessful");
-                                  if (mysqli_num_rows($result) > 0) {
-                                    $row = mysqli_fetch_assoc($result);
-                                    $emailParts = explode('@', $row['iUserEmail']);
-                                    $username = $emailParts[0]; // Get the username before '@gmail.com'
-                              
-                                    echo $row['ifirstname'] . ' ' . $row['ilastname'];
+                                                                            $sql = "SELECT * FROM users WHERE user_id = $viewingUserId";
+                                                                            $result = mysqli_query($conn, $sql) or die("query unsuccessful");
+                                                                            if (mysqli_num_rows($result) > 0) {
+                                                                              $row = mysqli_fetch_assoc($result);
+                                                                              $emailParts = explode('@', $row['iUserEmail']);
+                                                                              $username = $emailParts[0]; // Get the username before '@gmail.com'
+                                                                        
+                                                                              echo $row['ifirstname'] . ' ' . $row['ilastname'];
 
-                                    echo ' <span class="text-sm leading-5 font-medium text-gray-400 hover:text-gray-300 transition ease-in-out duration-150">@';
-                                    echo $username; // Display the username
-                                    echo '</span>';
+                                                                              echo ' <span class="text-sm leading-5 font-medium text-gray-400 hover:text-gray-300 transition ease-in-out duration-150">@';
+                                                                              echo $username; // Display the username
+                                                                              echo '</span>';
 
-                                    $postCreated = strtotime($fetch['post_created']); // Convert to timestamp
-                                    $timePosted = strtotime($fetch['time_posted']); // Convert to timestamp
-                                    echo ' <span class="text-sm leading-5 font-medium text-gray-400 hover:text-gray-300 transition ease-in-out duration-150">';
-                                    echo date('F j, Y', $postCreated) . ' ' . date('g:i A', $timePosted);
-                                    echo '</span>';
-                                  }
-                                } else {
-                                  $emailParts = explode('@', $_SESSION['iUserEmail']);
-                                  $username = $emailParts[0]; // Get the username before '@gmail.com'
-                              
-                                  echo $_SESSION['ifirstname'] . ' ' . $_SESSION['ilastname'];
+                                                                              $postCreated = strtotime($fetch['post_created']); // Convert to timestamp
+                                                                              $timePosted = strtotime($fetch['time_posted']); // Convert to timestamp
+                                                                              echo ' <span class="text-sm leading-5 font-medium text-gray-400 hover:text-gray-300 transition ease-in-out duration-150">';
+                                                                              echo date('F j, Y', $postCreated) . ' ' . date('g:i A', $timePosted);
+                                                                              echo '</span>';
+                                                                            }
+                                                                          } else {
+                                                                            $emailParts = explode('@', $_SESSION['iUserEmail']);
+                                                                            $username = $emailParts[0]; // Get the username before '@gmail.com'
+                                                                        
+                                                                            echo $_SESSION['ifirstname'] . ' ' . $_SESSION['ilastname'];
 
-                                  // Display the username
-                                  echo ' <span class="text-sm leading-5 font-medium text-gray-400 hover:text-gray-300 transition ease-in-out duration-150">@';
-                                  echo $username;
-                                  echo '</span>';
+                                                                            // Display the username
+                                                                            echo ' <span class="text-sm leading-5 font-medium text-gray-400 hover:text-gray-300 transition ease-in-out duration-150">@';
+                                                                            echo $username;
+                                                                            echo '</span>';
 
-                                  $postCreated = strtotime($fetch['post_created']); // Convert to timestamp
-                                  $timePosted = strtotime($fetch['time_posted']); // Convert to timestamp
-                                  echo ' <span class="text-sm leading-5 font-medium text-gray-400 hover:text-gray-300 transition ease-in-out duration-150">';
-                                  echo date('F j, Y', $postCreated) . ' ' . date('g:i A', $timePosted);
-                                  echo '</span>';
-                                }
-                                ?>
-                              </p>
-                            </div>
+                                                                            $postCreated = strtotime($fetch['post_created']); // Convert to timestamp
+                                                                            $timePosted = strtotime($fetch['time_posted']); // Convert to timestamp
+                                                                            echo ' <span class="text-sm leading-5 font-medium text-gray-400 hover:text-gray-300 transition ease-in-out duration-150">';
+                                                                            echo date('F j, Y', $postCreated) . ' ' . date('g:i A', $timePosted);
+                                                                            echo '</span>';
+                                                                          }
+                                                                          ?>
+                                                                        </p>
+                                                                      </div>
+                                                                      <!--Edit post button-->
+                                                                      <div class="flex ml-auto justify-end">
+                                                                        <?php
+                                                                        // Check if the user is logged in
+                                                                        if (isset($_SESSION['user_id'])) {
+                                                                          $loggedInUserId = $_SESSION['user_id'];
+                                                                          $viewUserId = isset($_GET['view_user_id']) ? $_GET['view_user_id'] : $loggedInUserId;
 
+                                                                          // Show the "Edit Profile" button if it's the logged-in user's profile
+                                                                          if ($loggedInUserId == $viewUserId) {
+                                                                            ?>
+                                                                                                                                                                    <button type="button" data-modal-target="editprofileform" data-modal-toggle="editprofileform">
+                                                                                                                                                                      <span class="material-symbols-rounded">
+                                                                                                                                                                        more_vert
+                                                                                                                                                                      </span>
+                                                                                                                                                                    </button>
+                                                                                                                      <?php } else { ?>
+                                                                                                                                                                    <button type="button" data-modal-target="reportpost" data-modal-toggle="reportpost">
+                                                                                                                                                                      <span class="material-symbols-rounded">
+                                                                                                                                                                        more_vert
+                                                                                                                                                                      </span>
+                                                                                                                                                                    </button>
+                                                                                                                      <?php }
+                                                                        } ?>
+                                                                      </div>
+                                                                    </div>
 
-                          </div>
-                        </a>
-                      </div>
+                                                                  </div>
 
-                      <div class="pl-16 overflow-none">
-                        <p
-                          class="text-base width-auto font-medium text-gray-900 dark:text-gray-100 flex-shrink mx-2 fit-content break-words">
-                          <?php echo $fetch['text_post'] ?>
-                        </p>
-                        <?php
-                        if ($fetch['image_post']) {
-                          ?>
-                          <div id="uploaded_image" class="md:flex-shrink pr-6 pt-3">
-                            <div>
-                              <img class="bg-cover bg-no-repeat bg-center rounded-lg opacity-100 w-full h-full"
-                                src="<?php echo $fetch['image_post'] ?>" alt="" />
-                            </div>
-                          </div>
-                          <!-- Display user-specific buttons for their own posts -->
-                        <?php } ?>
-                        <div class="flex items-center py-4">
-                          <?php if ($isCurrentUserPost) { ?>
+                                                                  <div class="pl-16 overflow-none">
+                                                                    <p
+                                                                      class="text-base width-auto font-medium text-gray-900 dark:text-gray-100 flex-shrink mx-2 fit-content break-words">
+                                                                      <?php echo $fetch['text_post'] ?>
+                                                                    </p>
+                                                                    <?php
+                                                                    if ($fetch['image_post']) {
+                                                                      ?>
+                                                                                                                  <div id="uploaded_image" class="md:flex-shrink pr-6 pt-3">
+                                                                                                                    <div>
+                                                                                                                      <img class="bg-cover bg-no-repeat bg-center rounded-lg opacity-100 w-full h-full"
+                                                                                                                        src="<?php echo $fetch['image_post'] ?>" alt="" />
+                                                                                                                    </div>
+                                                                                                                  </div>
+                                                                                                                  <!-- Display user-specific buttons for their own posts -->
+                                                                    <?php } ?>
+                                                                    <div class="flex items-center py-4">
+                                                                      <?php if ($isCurrentUserPost) { ?>
 
-                            <button
-                              class="flex-1 flex items-center text-xs text-gray-400 hover:text-blue-400 transition duration-350 ease-in-out">
-                              <span class="material-symbols-rounded">
-                                add_comment
-                              </span>
-                              12.3 k
-                            </button>
-                            <button
-                              class="flex-1 flex items-center text-xs text-gray-400 hover:text-green-400 transition duration-350 ease-in-out">
-                              <span class="material-symbols-rounded">
-                                reply
-                              </span>
-                              14 k
-                            </button>
-                            <button
-                              class="flex-1 flex items-center text-xs text-gray-400 hover:text-red-600 transition duration-350 ease-in-out">
-                              <span class="material-symbols-rounded">
-                                favorite
-                              </span>
-                              14 k
-                            </button>
-                            <button
-                              class="flex-1 flex items-center text-xs text-gray-400 hover:text-blue-400 transition duration-350 ease-in-out">
-                              <span class="absolute material-symbols-rounded">
-                                upload
-                              </span>
-                            </button>
-                          <?php } else { ?>
-                            <!-- Display buttons for other users' posts -->
-                            <button
-                              class="flex-1 flex items-center text-xs text-gray-400 hover:text-blue-400 transition duration-350 ease-in-out">
-                              <span class="material-symbols-rounded">
-                                add_comment
-                              </span>
-                              12.3 k
-                            </button>
-                            <button
-                              class="flex-1 flex items-center text-xs text-gray-400 hover:text-green-400 transition duration-350 ease-in-out">
-                              <span class="material-symbols-rounded">
-                                reply
-                              </span>
-                              14 k
-                            </button>
-                            <button
-                              class="flex-1 flex items-center text-xs text-gray-400 hover:text-red-600 transition duration-350 ease-in-out">
-                              <span class="material-symbols-rounded">
-                                favorite
-                              </span>
-                              14 k
-                            </button>
-                            <button
-                              class="flex-1 flex items-center text-xs text-gray-400 hover:text-blue-400 transition duration-350 ease-in-out">
-                              <span class="absolute material-symbols-rounded">
-                                upload
-                              </span>
-                            </button>
-                          <?php } ?>
-                        </div>
-                      </div>
-                      <hr class="border-gray-900 dark:border-gray-400" />
-                    </article>
-                  </div>
-                  <!--End of Post-->
-                </ul>
-                <?php
+                                                                                                                    <button
+                                                                                                                      class="flex-1 flex items-center text-xs text-gray-400 hover:text-blue-400 transition duration-350 ease-in-out">
+                                                                                                                      <span class="material-symbols-rounded">
+                                                                                                                        add_comment
+                                                                                                                      </span>
+                                                                                                                      12.3 k
+                                                                                                                    </button>
+                                                                                                                    <button
+                                                                                                                      class="flex-1 flex items-center text-xs text-gray-400 hover:text-green-400 transition duration-350 ease-in-out">
+                                                                                                                      <span class="material-symbols-rounded">
+                                                                                                                        reply
+                                                                                                                      </span>
+                                                                                                                      14 k
+                                                                                                                    </button>
+                                                                                                                    <button
+                                                                                                                      class="flex-1 flex items-center text-xs text-gray-400 hover:text-red-600 transition duration-350 ease-in-out">
+                                                                                                                      <span class="material-symbols-rounded">
+                                                                                                                        favorite
+                                                                                                                      </span>
+                                                                                                                      14 k
+                                                                                                                    </button>
+                                                                                                                    <button
+                                                                                                                      class="flex-1 flex items-center text-xs text-gray-400 hover:text-blue-400 transition duration-350 ease-in-out">
+                                                                                                                      <span class="absolute material-symbols-rounded">
+                                                                                                                        upload
+                                                                                                                      </span>
+                                                                                                                    </button>
+                                                                      <?php } else { ?>
+                                                                                                                    <!-- Display buttons for other users' posts -->
+                                                                                                                    <button
+                                                                                                                      class="flex-1 flex items-center text-xs text-gray-400 hover:text-blue-400 transition duration-350 ease-in-out">
+                                                                                                                      <span class="material-symbols-rounded">
+                                                                                                                        add_comment
+                                                                                                                      </span>
+                                                                                                                      12.3 k
+                                                                                                                    </button>
+                                                                                                                    <button
+                                                                                                                      class="flex-1 flex items-center text-xs text-gray-400 hover:text-green-400 transition duration-350 ease-in-out">
+                                                                                                                      <span class="material-symbols-rounded">
+                                                                                                                        reply
+                                                                                                                      </span>
+                                                                                                                      14 k
+                                                                                                                    </button>
+                                                                                                                    <button
+                                                                                                                      class="flex-1 flex items-center text-xs text-gray-400 hover:text-red-600 transition duration-350 ease-in-out">
+                                                                                                                      <span class="material-symbols-rounded">
+                                                                                                                        favorite
+                                                                                                                      </span>
+                                                                                                                      14 k
+                                                                                                                    </button>
+                                                                                                                    <button
+                                                                                                                      class="flex-1 flex items-center text-xs text-gray-400 hover:text-blue-400 transition duration-350 ease-in-out">
+                                                                                                                      <span class="absolute material-symbols-rounded">
+                                                                                                                        upload
+                                                                                                                      </span>
+                                                                                                                    </button>
+                                                                      <?php } ?>
+                                                                    </div>
+                                                                  </div>
+                                                                  <hr class="border-gray-300 dark:border-gray-400" />
+                                                                </article>
+                                                              </div>
+                                                              <!--End of Post-->
+                                                            </ul>
+                                                            <?php
                 }
                 ?>
               <!--End of list of Post-->
